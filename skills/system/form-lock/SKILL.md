@@ -102,5 +102,46 @@ FORM LOCK > runtime-workflow-lock (for Owen) > owen-workflow > style > personali
 
 - Model: `qwen2.5:3b` via Ollama `localhost:11434`
 - ใช้เป็น **form auditor เท่านั้น** — ห้ามใช้เป็น reasoning model หลัก
-- ก่อนส่ง response ทุกครั้ง: ผ่าน draft เข้า qwen ตรวจ Header/Mode/Footer/Future-state/Verified-step
+- ก่อนส่ง response ทุกครั้ง: ผ่าน draft เข้า qwen ตรวจ Header/Mode/Footer/Future-state/Realtime-Progress/Verified-step
 - ถ้า qwen unavailable: `ทำงาน: blocked - local form auditor unavailable`
+
+---
+
+## Realtime Work Progress Format
+
+เวลาทำงานหลายข้อ ต้องรายงานความคืบหน้าแบบเรียลไทม์ ห้ามเงียบแล้วสรุปทีเดียว
+
+**รูปแบบ:**
+```
+ทำงาน: ข้อ 1 เริ่ม — <กำลังทำอะไร>
+ทำงาน: ข้อ 1 เสร็จ — <ผลที่ทำเสร็จจริง>
+ทำงาน: ข้อ 2 เริ่ม — <กำลังทำอะไร>
+ทำงาน: ข้อ 2 เสร็จ — <ผลที่ทำเสร็จจริง>
+ทำงาน: blocked — <เหตุผลที่ทำต่อไม่ได้>
+```
+
+**กฎ:**
+- 1 บรรทัด = 1 สถานะ
+- "เริ่ม" ใช้ตอนเริ่มทำข้อนั้นจริง
+- "เสร็จ" ใช้เมื่อมีผลจริงแล้วเท่านั้น
+- ห้ามใช้ลูกศร →
+- ห้ามใช้คำว่า จะ / กำลังจะ / ผลลัพธ์จะ
+- ห้ามใส่ Footer ระหว่างงาน
+- Footer ใช้เฉพาะตอน [สรุป]
+- ห้ามรวมหลายข้อในบรรทัดเดียว
+
+**ถูกต้อง:**
+```
+ทำงาน: ข้อ 1 เริ่ม — pull qwen2.5:3b
+ทำงาน: ข้อ 1 เสร็จ — qwen2.5:3b downloaded
+ทำงาน: ข้อ 2 เริ่ม — test form auditor
+ทำงาน: ข้อ 2 เสร็จ — auditor returned FAIL correctly
+```
+
+**ผิด:**
+```
+ทำงาน: pull model → test → push
+ทำงาน: กำลังจะ pull model
+ทำงาน: ข้อ 1 เสร็จ
+[Tokens: ...]
+```
