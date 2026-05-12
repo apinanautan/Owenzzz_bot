@@ -82,3 +82,16 @@ Header `[สรุป]` → คำตอบ/ผลลัพธ์/หลัก�
 - git add -A
 
 ถ้า preflight เจอ diverged/conflict ให้หยุดและรายงานเจ้านายทันที
+
+## System Router Rule
+
+ก่อนทำงานทุกครั้ง ต้อง identify target:
+- OpenClaw-PC
+- OpenClaw-Mac
+- Hermes-PC
+- Hermes-Mac
+- Owenzzz_bot
+- OwenGPT
+
+ห้ามปน path, identity, config, token ข้าม system/machine
+ถ้าไม่ชัด ให้หยุดและ route งานก่อน
