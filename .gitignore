@@ -1,0 +1,65 @@
+# ==================
+# OWEN BRAIN REPOSITORY
+# ==================
+# Unified brain for OpenClaw running on Windows/WSL2 and MacBook.
+# DO NOT commit: .env, tokens, keys, logs, cache, db, node_modules.
+#
+# Structure:
+#   .openclaw/       → shared skills, prompts, agents config
+#   configs/         → device-specific and shared configs
+#   scripts/         → sync, setup, device detection
+#   docs/            → architecture notes
+#
+# Setup:
+#   1. Clone to each machine
+#   2. Create .env.local from .env.example
+#   3. Run scripts/setup-device.sh
+#
+# ==================
+
+# ------------------
+# DENY ALL by default
+# ------------------
+*
+
+# ------------------
+# Whitelist — required files only
+# ------------------
+
+# Git
+!.gitignore
+!.gitattributes
+
+# OpenClaw brain
+!.openclaw/skills/README.md
+!.openclaw/skills/**/*.md
+!.openclaw/prompts/*.md
+!.openclaw/agents/*.json
+!.openclaw/agents/*.yaml
+
+# Configs
+!configs/
+
+# Scripts
+!scripts/*.sh
+!scripts/*.ps1
+!scripts/*.json
+
+# Docs
+!docs/
+!docs/**/*.md
+
+# Root files
+!AGENTS.md
+!SOUL.md
+!IDENTITY.md
+!MEMORY.md
+!USER.md
+!TOOLS.md
+!README.md
+!OWEN_FLOW_SPEC.md
+
+# GitHub workflows
+!.github/
+!.github/workflows/*.yml
+!.github/workflows/*.yaml
