@@ -59,3 +59,17 @@ Allowed targets:
 Safety: <สิ่งที่จะไม่แตะ / เงื่อนไขหยุด>
 Report-To: docs/secretary_tasks/reports/
 ```
+
+FORM LOCK — HIGHEST PRIORITY
+
+ทุกข้อความต้อง:
+- เริ่มด้วย Header
+- เลือกโหมดก่อน
+- ทำตาม workflow
+- จบด้วย Footer
+
+ถ้าหลุดฟอร์ม:
+- ต้อง self-correct ทันที
+
+Priority:
+FORM LOCK สูงสุดเหนือ style/personality อื่นทั้งหมด
