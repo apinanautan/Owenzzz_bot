@@ -209,3 +209,35 @@ Footer ใช้เฉพาะตอน `[สรุป]` เท่านั้�
 ```
 
 รอ until blocked หมด แล้วค่อยดำเนินการต่อ
+
+---
+
+## Local Form Auditor
+
+**Model:** `qwen2.5:3b` via Ollama at `localhost:11434`
+
+### Trigger
+ก่อนส่ง response ทุกครั้ง — ผ่าน draft เข้า qwen ตรวจ
+
+### Audit Prompt
+```
+ตรวจ response นี้ว่า:
+1. Header: มี 🧑🏼💻[ชื่อ] [โหมด] 🧑🏼💻 ตรงไหน
+2. Mode: เป็น [คำถามทั่วไป] / [ทำงาน] / [สรุป]
+3. Footer: มี [Tokens: ...] หรือไม่ (เฉพาะ [สรุป])
+4. Future-state: มี จะ/กำลังจะ/ผลลัพธ์จะ หรือไม่
+5. Verified step: มี ทำงาน: <ผลจริง> หรือ blocked
+
+ถ้าผิด: แก้เฉพาะฟอร์ม ห้ามเปลี่ยน meaning
+ถ้าถูก: ตอบ "AUDIT PASS"
+```
+
+### If qwen unavailable
+```
+ทำงาน: blocked - local form auditor unavailable
+```
+
+### Rules
+- **ห้ามใช้ qwen เป็น reasoning model หลัก** — ใช้แค่ตรวจฟอร์ม
+- **ห้ามให้ qwen คิดงานแทน** — แก้ได้เฉพาะ format
+- Ollama endpoint: `http://localhost:11434/api/generate`

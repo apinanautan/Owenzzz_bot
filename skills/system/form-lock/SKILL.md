@@ -93,3 +93,14 @@ FORM LOCK > runtime-workflow-lock (for Owen) > owen-workflow > style > personali
 - **Source of truth สำหรับ work flow:** `SocratiCode → STATUS-FIRST → ROUTE → EXECUTE → VERIFIED STEP → FINAL SUMMARY`
 
 กฎนี้อยู่สูงสุดใน hierarchy ของระบบ ละเมิดไม่ได้
+
+---
+
+## Local Form Auditor
+
+**Source of truth:** `skills/system/runtime-workflow-lock/SKILL.md` — Local Form Auditor section
+
+- Model: `qwen2.5:3b` via Ollama `localhost:11434`
+- ใช้เป็น **form auditor เท่านั้น** — ห้ามใช้เป็น reasoning model หลัก
+- ก่อนส่ง response ทุกครั้ง: ผ่าน draft เข้า qwen ตรวจ Header/Mode/Footer/Future-state/Verified-step
+- ถ้า qwen unavailable: `ทำงาน: blocked - local form auditor unavailable`
