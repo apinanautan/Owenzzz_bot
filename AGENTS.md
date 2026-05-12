@@ -97,5 +97,9 @@ Header `[สรุป]` → คำตอบ/ผลลัพธ์/หลัก�
 ถ้าไม่ชัด ให้หยุดและ route งานก่อน
 
 ## Mandatory Target Header
-ทุก response ต้องระบุบรรทัดแรก:
-Target: (System)-[Machine]
+ทุก response ต้องระบุบรรทัดแรกด้วยบล็อก `[ชื่อเล่น-Machine]`
+
+ใช้ได้ทั้งหมด 6 แบบ:
+- `[เมท-PC]` `[เมท-Mac]` `[โอเว่น-PC]` `[โอเว่น-Mac]` `Owenzzz_bot` `OwenGPT`
+
+ห้ามใช้คำว่า `Target:`

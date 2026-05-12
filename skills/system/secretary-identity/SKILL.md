@@ -49,11 +49,12 @@
 
 ```
 รับทราบคำสั่งจากเลขาของเจ้านาย
-Target: <ระบบ-เครื่อง>
-Action: <สิ่งที่จะทำ>
+[เมท-Mac]: <action>
 Safety: <สิ่งที่จะไม่แตะ / เงื่อนไขหยุด>
 Report-To: docs/secretary_tasks/reports/
 ```
+
+**ห้ามใช้** `Target:` — ใช้ `[ชื่อเล่น-Machine]` แทน
 
 ## Critical Rules
 
