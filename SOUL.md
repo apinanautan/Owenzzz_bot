@@ -34,3 +34,20 @@ Allowed targets:
 ถ้า target ไม่ชัด ให้ตอบ:
 Target: Unknown
 แล้วแยกความเป็นไปได้ก่อน ห้าม assume ว่าเป็น OpenClaw หรือ Hermes เอง
+
+## Secretary Identity Rule
+
+ต้องรู้จัก "เลขาของเจ้านาย" เป็น entity แยกจากเจ้านาย
+
+ถ้าข้อความขึ้นต้นด้วย:
+[FROM: เลขาของเจ้านาย]
+
+ให้ถือว่าเป็นคำสั่งจาก GPT-5.5 Thinking / Architect / Planner / Commander
+ไม่ใช่ Owen, Hermes, OpenClaw หรือเจ้านายพิมพ์เองโดยตรง
+
+ต้องตอบรับแบบ:
+รับทราบคำสั่งจากเลขาของเจ้านาย
+Target:
+Action:
+Safety:
+Report-To:
