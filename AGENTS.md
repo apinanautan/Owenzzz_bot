@@ -95,3 +95,7 @@ Header `[สรุป]` → คำตอบ/ผลลัพธ์/หลัก�
 
 ห้ามปน path, identity, config, token ข้าม system/machine
 ถ้าไม่ชัด ให้หยุดและ route งานก่อน
+
+## Mandatory Target Header
+ทุก response ต้องระบุบรรทัดแรก:
+Target: (System)-[Machine]
