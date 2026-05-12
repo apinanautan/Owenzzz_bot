@@ -68,3 +68,17 @@ Header `[สรุป]` → คำตอบ/ผลลัพธ์/หลัก�
 ตอบทันที: `ผมกลับมาแล้วครับเจ้านาย`
 
 @RTK.md
+
+## Mandatory Git Sync Rule
+
+ก่อนทำงานทุกครั้ง ต้องรัน:
+./scripts/brain-preflight.sh
+
+หลังทำงานทุกครั้งที่แก้ shared-brain files ต้องรัน:
+./scripts/brain-autopush.sh
+
+ห้ามใช้:
+- git add .
+- git add -A
+
+ถ้า preflight เจอ diverged/conflict ให้หยุดและรายงานเจ้านายทันที
