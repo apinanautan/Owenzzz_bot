@@ -1,45 +1,63 @@
 # System Router
 
-ก่อนตอบหรือทำงานทุกครั้ง ต้องระบุ target system + target machine ให้ชัดก่อนลงมือ
+ก่อนตอบหรือทำงานทุกครั้ง ต้องระบุ target ให้ชัดก่อนลงมือ
 
-## Compact Target Names (ใช้แทน System-Machine)
+## Compact Target Names
 
-| ชื่อเล่น | System | Machine | ความหมาย |
-|---|---|---|---|
-| `[เมท-PC]` | Hermes | PC | Hermes worker บน Windows/WSL |
-| `[เมท-Mac]` | Hermes | Mac | Hermes worker บน Mac |
-| `[โอเว่น-PC]` | OpenClaw | PC | OpenClaw runtime บน PC |
-| `[โอเว่น-Mac]` | OpenClaw | Mac | OpenClaw runtime บน Mac |
-| `Owenzzz_bot` | — | GitHub | shared brain repo (ใช้ตรง ๆ) |
-| `OwenGPT` | — | ChatGPT | architect/planner |
+| ชื่อเล่น | System | ความหมาย |
+|---|---|---|
+| `[เมท-PC]` | Hermes | sync/bootstrap/git/MCP/maintenance บน PC |
+| `[เมท-Mac]` | Hermes | sync/bootstrap/git/MCP/maintenance บน Mac |
+| `[โอเว่น-PC]` | OpenClaw | runtime/gateway/Telegram/process บน PC |
+| `[โอเว่น-Mac]` | OpenClaw | runtime/gateway/Telegram/process บน Mac |
+| `Owenzzz_bot` | — | GitHub shared brain repo (docs/skills/memories) |
+| `OwenGPT` | — | architect/planner ใน ChatGPT |
+
+## การตีความ Owenzzz_bot vs โอเว่น
+
+**Owenzzz_bot** = เอกสาร/ความรู้/shared-brain เท่านั้น
+- GitHub repo: `github.com/apinanautan/Owenzzz_bot`
+- เก็บ: docs/, skills/, memories/, AGENTS.md, SOUL.md
+- **ห้ามตีความว่า** = โอเว่น/OpenClaw
+
+**โอเว่น** = runtime/gateway/Telegram/process เท่านั้น
+- gateway, bot process, Telegram polling, bot token
+- **ห้ามตีความว่า** = Owenzzz_bot
+
+## Do-Not-Touch (ห้ามแตะโดยตรง)
+
+- runtime
+- gateway
+- telegram
+- bot token
+- polling process
+
+ยกเว้น: task ระบุ `[โอเว่น-PC]` หรือ `[โอเว่น-Mac]` โดยตรงเท่านั้น
 
 ## Routing Rules
 
 | Keywords | Target |
 |---|---|
 | polling, Telegram stall, gateway, process, PID, bot runtime | `[โอเว่น-PC]` หรือ `[โอเว่น-Mac]` |
-| ~/.hermes, sync worker, brain-preflight, brain-autopush | `[เมท-PC]` หรือ `[เมท-Mac]` |
+| ~/.hermes, sync worker, brain-preflight, brain-autopush, git, MCP | `[เมท-PC]` หรือ `[เมท-Mac]` |
 | GitHub repo, skills, memories, AGENTS.md, SOUL.md, docs | `Owenzzz_bot` |
 | แผน, architecture, สั่ง Hermes/OpenClaw | `OwenGPT` |
 
 ## Machine Rules
 
-- ถ้าพูดถึง Windows, WSL, DESKTOP, /mnt/c, /home/apinan → `[เมท-PC]` หรือ `[โอเว่น-PC]`
-- ถ้าพูดถึง Mac, Darwin, /Users/apaut, mac-main → `[เมท-Mac]` หรือ `[โอเว่น-Mac]`
-- ถ้าไม่ชัด ต้องถาม/หรือแยกความเป็นไปได้ก่อน
-- ห้ามเอา path/config/token ของ Mac ไปใส่ PC
-- ห้ามเอา path/config/token ของ PC ไปใส่ Mac
+- Windows, WSL, DESKTOP, /mnt/c, /home/apinan → `[เมท-PC]` หรือ `[โอเว่น-PC]`
+- Mac, Darwin, /Users/apaut → `[เมท-Mac]` หรือ `[โอเว่น-Mac]`
+- ไม่ชัด → ถามก่อน ห้าม assume
+
+## Behavior Rules
+
+- task ระบุ `Owenzzz_bot` → ทำเฉพาะ repo/docs/skills/memory
+- task ระบุ `[โอเว่น-PC/Mac]` → ถึงค่อยแตะ runtime/process
+- ไม่ชัด → ถามก่อน ห้าม assume
 
 ## Critical Rules
 
-1. **ห้ามใช้** `Target: (System)-[Machine]` — ใช้ `[ชื่อเล่น-Machine]` แทน
-2. **ห้าม assume** ว่าทุกงานคือ `[เมท-...]` หรือ `[โอเว่น-...]`
-3. **ก่อนแก้ไฟล์** ต้องบอกก่อนว่า target คือ `[ชื่อเล่น-Machine]`
-4. **ห้ามปน** path/config/token ข้าม system/machine
-5. **ถ้าไม่ชัด** → หยุดและ route งานก่อน ห้ามเดา
-
-## Workflow
-
-```
-เห็นงาน → แยก system + machine → ใช้ [ชื่อเล่น-Machine] → ถามถ้าไม่ชัด → ทำงาน → รายงาน
-```
+1. ห้ามใช้ `Target:` — ใช้ `[ชื่อเล่น-Machine]`
+2. ห้าม assume ว่าทุกงานคือ โอเว่น หรือ เมท
+3. ห้ามปน path/config/token ข้าม system/machine
+4. ถ้าไม่ชัด → หยุดและถามก่อน

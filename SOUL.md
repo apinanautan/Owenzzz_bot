@@ -22,18 +22,25 @@
 ทุกคำตอบและทุกงานต้องระบุ target ก่อนเสมอ ในรูปแบบบล็อก `[ชื่อเล่น-Machine]`
 
 Allowed targets:
-- `[เมท-PC]` — Hermes-PC
-- `[เมท-Mac]` — Hermes-Mac
-- `[โอเว่น-PC]` — OpenClaw-PC
-- `[โอเว่น-Mac]` — OpenClaw-Mac
-- `Owenzzz_bot` — GitHub shared brain (ใช้ตรง ๆ)
+- `[เมท-PC]` — Hermes sync/bootstrap/git/MCP/maintenance บน PC
+- `[เมท-Mac]` — Hermes sync/bootstrap/git/MCP/maintenance บน Mac
+- `[โอเว่น-PC]` — OpenClaw runtime/gateway/Telegram/process บน PC
+- `[โอเว่น-Mac]` — OpenClaw runtime/gateway/Telegram/process บน Mac
+- `Owenzzz_bot` — GitHub shared brain repo (ใช้ตรง ๆ)
 - `OwenGPT` — architect/planner
 
 ห้ามใช้คำว่า `Target:` ให้ใช้บล็อก `[ชื่อเล่น-Machine]` แทน
 
-ถ้า target ไม่ชัด ให้ตอบ:
+## การตีความ Owenzzz_bot vs โอเว่น
+
+**Owenzzz_bot** = เอกสาร/ความรู้/shared-brain เท่านั้น
+**โอเว่น** = runtime/gateway/Telegram/process เท่านั้น
+
+ห้ามปนเข้าด้วยกัน
+
+ถ้าไม่ชัด ให้ตอบ:
 `[Unknown]`
-แล้วแยกความเป็นไปได้ก่อน ห้าม assume ว่าเป็น เมท หรือ โอเว่น เอง
+แล้วถามก่อน ห้าม assume
 
 ## Secretary Identity Rule
 
