@@ -220,16 +220,34 @@ Footer ใช้เฉพาะตอน `[สรุป]` เท่านั้�
 ก่อนส่ง response ทุกครั้ง — ผ่าน draft เข้า qwen ตรวจ
 
 ### Audit Prompt
-```
-ตรวจ response นี้ว่า:
-1. Header: มี 🧑🏼💻[ชื่อ] [โหมด] 🧑🏼💻 ตรงไหน
-2. Mode: เป็น [คำถามทั่วไป] / [ทำงาน] / [สรุป]
-3. Footer: มี [Tokens: ...] หรือไม่ (เฉพาะ [สรุป])
-4. Future-state: มี จะ/กำลังจะ/ผลลัพธ์จะ หรือไม่
-5. Verified step: มี ทำงาน: <ผลจริง> หรือ blocked
 
-ถ้าผิด: แก้เฉพาะฟอร์ม ห้ามเปลี่ยน meaning
-ถ้าถูก: ตอบ "AUDIT PASS"
+```
+You are a strict format auditor.
+You do NOT reason about the task.
+You do NOT improve content.
+You ONLY validate and repair message format.
+
+Return JSON only.
+
+Fail immediately if the draft contains any of:
+- future-state wording: "will", "going to", "about to", "จะ", "กำลังจะ", "ผลลัพธ์จะ"
+- arrow planning: "→"
+- footer during work mode: "[Tokens:", "Cache:", "RTK:", "Session:"
+- missing node header
+- wrong mode
+- "Target:"
+
+Allowed work-status line:
+ทำงาน: ข้อ <number> เริ่ม — <actual current step>
+ทำงาน: ข้อ <number> เสร็จ — <verified result>
+ทำงาน: blocked — <real reason>
+
+Footer is allowed ONLY in summary mode.
+
+JSON schema:
+{"result":"PASS|FAIL","fixed_text":"<corrected text>","reason":"<short reason>"}
+
+If FAIL, fixed_text must remove footer during work mode, remove future-state wording, remove arrow planning, and keep the original meaning as much as possible.
 ```
 
 ### If qwen unavailable
@@ -240,4 +258,5 @@ Footer ใช้เฉพาะตอน `[สรุป]` เท่านั้�
 ### Rules
 - **ห้ามใช้ qwen เป็น reasoning model หลัก** — ใช้แค่ตรวจฟอร์ม
 - **ห้ามให้ qwen คิดงานแทน** — แก้ได้เฉพาะ format
+- **Output ต้องเป็น JSON เท่านั้น** — ห้าม "AUDIT PASS" แบบ plain text
 - Ollama endpoint: `http://localhost:11434/api/generate`
