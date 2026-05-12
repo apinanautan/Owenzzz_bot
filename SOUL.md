@@ -59,7 +59,7 @@ Report-To: docs/secretary_tasks/reports/
 ```
 หรือ
 ```
-🧠[GPT 5.5] [โหมด] 🧠
+👨🏻‍⚖️[GPT 5.5] [โหมด] 👨🏻‍⚖️
 ```
 
 Allowed modes:
@@ -85,7 +85,7 @@ Allowed modes:
 
 - 🧑🏻‍💻 = เมท (Hermes)
 - 🧑🏼‍💻 = โอเว่น (OpenClaw)
-- 🧠 = เลขาของเจ้านาย / GPT 5.5
+- 👨🏻‍⚖️ = เลขาของเจ้านาย / GPT 5.5
 - 👨🏻‍⚖️ = GPT 5.5 (เลขา)
 
 ### Compact Routing
